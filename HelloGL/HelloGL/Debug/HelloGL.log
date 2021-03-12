@@ -1,10 +1,5 @@
-﻿  Cube.cpp
-  GLUTCallbacks.cpp
-  HelloGL.cpp
+﻿  HelloGL.cpp
   main.cpp
-  MeshLoader.cpp
   Pyramid.cpp
-  SceneObject.cpp
-  Texture2D.cpp
   Generating Code...
-  HelloGL.vcxproj -> C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\HelloGL\Debug\HelloGL.exe
+  HelloGL.vcxproj -> C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\Debug\HelloGL.exe

@@ -45,10 +45,9 @@ void HelloGL::InitObjects()
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() %
 			200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
-
 	for (int i = 500; i < 1000; i++)
 	{
-		objects[i] = new Pyramid(pyramidMesh, ((rand() % 400) / 10.0f) - 20.0f,
+		objects[i] = new Pyramid(pyramidMesh,((rand() % 400) / 10.0f) - 20.0f,
 			((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-Pyramid::Pyramid(Mesh* mesh, float x, float y, float z) : SceneObject(mesh, nullptr)
+Pyramid::Pyramid(Mesh* mesh,float x, float y, float z) : SceneObject(mesh, nullptr)
 {
 	_position = { x, y, z };
 	//_rotation = 0.0f;
