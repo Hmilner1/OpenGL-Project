@@ -8,7 +8,7 @@ using namespace std;
 namespace MeshLoader
 {
     void LoadVertices(ifstream& inFile, Mesh& mesh);
-    void LoadColours(ifstream& inFile, Mesh& mesh);
+    void LoadNormals(ifstream& inFile, Mesh& mesh);
     void LoadIndices(ifstream& inFile, Mesh& mesh);
     void LoadTexCoords(ifstream& inFile, Mesh& mesh);
 
@@ -29,15 +29,15 @@ namespace MeshLoader
         }
     }
 
-    void LoadColours(ifstream& inFile, Mesh& mesh)
+    void LoadNormals(ifstream& inFile, Mesh& mesh)
     {
-        inFile >> mesh.ColorCount;
-        mesh.Colors = new Color[mesh.ColorCount];
-        for (int i = 0; i < mesh.ColorCount; i++)
+        inFile >> mesh.NormalCount;
+        mesh.Normals = new Vector3[mesh.NormalCount];
+        for (int i = 0; i < mesh.NormalCount; i++)
         {
-            inFile >> mesh.Colors[i].r;
-            inFile >> mesh.Colors[i].g;
-            inFile >> mesh.Colors[i].b;
+            inFile >> mesh.Normals[i].x;
+            inFile >> mesh.Normals[i].y;
+            inFile >> mesh.Normals[i].z;
         }
     }
 
@@ -77,8 +77,8 @@ namespace MeshLoader
         }
 
         LoadVertices(inFile, *mesh);
-        LoadColours(inFile, *mesh);
         LoadTexCoords(inFile, *mesh);
+        LoadNormals(inFile, *mesh);
         LoadIndices(inFile, *mesh);
 
         return mesh;

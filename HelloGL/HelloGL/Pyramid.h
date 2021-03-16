@@ -8,14 +8,15 @@
 class Pyramid : public SceneObject
 {
 private:
-	//GLfloat _rotation;
+	GLfloat _rotation;
 	Vector3 _position;
-
+	//Material* _material;
 public:
 	Pyramid(Mesh* mesh, float x, float y, float z);
 	~Pyramid();
 
 	void Draw();
 	void Update();
+	//void material();
 };
 

@@ -21,9 +21,12 @@ public:
 	void Keyboard(unsigned char key, int x, int y);
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
+	void Light();
 private:
 	Camera* camera;  
 	SceneObject* objects[1000];
+	Vector4* _lightPosition;
+	Lighting* _lightData;
 	
 };
 
