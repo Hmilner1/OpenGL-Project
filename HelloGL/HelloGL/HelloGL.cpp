@@ -4,6 +4,7 @@
 
 HelloGL::HelloGL(int argc, char* argv[])
 {
+
 	InitGL(argc,argv);
 	Light();
 	InitObjects();
@@ -51,11 +52,12 @@ void HelloGL::InitObjects()
 	{
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() %200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
+	
 
-	for (int i = 500; i < 1000; i++)
-	{
-		objects[i] = new Pyramid(pyramidMesh,((rand() % 400) / 10.0f) - 20.0f,((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	//for (int i = 500; i < 1000; i++)
+	//{
+	//	objects[i] = new Pyramid(pyramidMesh,((rand() % 400) / 10.0f) - 20.0f,((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	//}
 
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
@@ -98,11 +100,14 @@ HelloGL::~HelloGL(void)
 
 void HelloGL::Display()
 {
+	Vector3 v = { 0.0f, 0.0f, 0.9f };
+	Color c = { 0.0f, 1.0f, 1.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		objects[i]->Draw();
 	}
+	DrawString("Hello GL", &v, &c);
 	glutSwapBuffers();
 	glFlush(); 
 }
@@ -114,7 +119,7 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 500; i++)
 	{
 		objects[i]->Update();
 	}
@@ -145,4 +150,13 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		camera->eye.z -= 0.1f;
 		camera->center.z -= 0.1f;
 	}
+}
+
+void HelloGL::DrawString(const char* text, Vector3* position, Color* color)
+{
+	glPushMatrix();
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(0.0f, 0.0f);
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
+	glPopMatrix();
 }

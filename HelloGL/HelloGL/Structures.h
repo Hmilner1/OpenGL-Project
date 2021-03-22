@@ -16,10 +16,11 @@ struct Camera
 	Vector3 center;
 	Vector3 up;
 };
-//struct Color
-//{
-//	GLfloat r, g, b;
-//};
+
+struct Color
+{
+	GLfloat r, g, b;
+};
 
 struct Vertex
 {

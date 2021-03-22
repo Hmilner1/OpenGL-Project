@@ -22,6 +22,7 @@ public:
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
 	void Light();
+	void DrawString(const char* text, Vector3* position, Color* color);
 private:
 	Camera* camera;  
 	SceneObject* objects[1000];
