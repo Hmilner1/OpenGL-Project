@@ -8,4 +8,6 @@ C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Pr
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(84,30): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(85,30): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(86,30): warning C4305: '=': truncation from 'double' to 'float'
+  OBJLoader.cpp
+  Generating Code...
   HelloGL.vcxproj -> C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\Debug\HelloGL.exe

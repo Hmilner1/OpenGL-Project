@@ -6,6 +6,7 @@
 #include "Structures.h"
 #include "Cube.h"
 #include "Pyramid.h"
+#include "OBJLoader.h"
 //this can be changed to 7 to run 140 fps
 #define REFRESHRATE 16
 
