@@ -25,7 +25,7 @@ public:
 	void DrawString(const char* text, Vector3* position, Color* color);
 private:
 	Camera* camera;  
-	SceneObject* objects[1000];
+	SceneObject* objects[2];
 	Vector4* _lightPosition;
 	Lighting* _lightData;
 	

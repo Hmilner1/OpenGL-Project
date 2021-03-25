@@ -8,7 +8,6 @@
 class Cube : public SceneObject
 {
 private:
-	GLfloat _rotation;
 	Material* _material;
 	
 public:
@@ -18,7 +17,8 @@ public:
 	void Draw();
 	void Update();
 	void material();
-	Vector3 _position;
+	//Vector3 _position;
+	GLfloat _rotation;
 };
 
 

@@ -48,9 +48,12 @@ void HelloGL::InitObjects()
 	Texture2D* texture1 = new Texture2D();
 	texture1->Load((char*)"Stars.raw", 512, 512);
 
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() %200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+
+		//objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() %200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		objects[0] = new Cube(cubeMesh, texture, 0.0f, 1.0f, -20.0f);
+		objects[1] = new Cube(cubeMesh, texture1, 5.0f, 1.0f, -20.0f);
 	}
 	
 
@@ -90,7 +93,7 @@ void HelloGL::Light()
 HelloGL::~HelloGL(void)
 {
 	delete camera;
-	for (int i =0; i < 1000;  i++)
+	for (int i =0; i < 2;  i++)
 	{ 
 		delete objects[i];
 	}
@@ -103,11 +106,11 @@ void HelloGL::Display()
 	Vector3 v = { 0.0f, 0.0f, 0.9f };
 	Color c = { 0.0f, 1.0f, 1.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		objects[i]->Draw();
 	}
-	DrawString("Hello GL", &v, &c);
+	DrawString("Score", &v, &c);
 	glutSwapBuffers();
 	glFlush(); 
 }
@@ -119,7 +122,7 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		objects[i]->Update();
 	}
@@ -150,6 +153,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 		camera->eye.z -= 0.1f;
 		camera->center.z -= 0.1f;
 	}
+
 }
 
 void HelloGL::DrawString(const char* text, Vector3* position, Color* color)

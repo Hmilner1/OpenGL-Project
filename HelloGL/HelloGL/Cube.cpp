@@ -6,6 +6,7 @@ Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObj
 {
 	_position = { x, y, z };
 	_rotation = 0.0f;
+	
 }
 
 Cube::~Cube()
@@ -31,7 +32,7 @@ void Cube::Draw()
 	glMaterialf(GL_FRONT, GL_SHININESS, _material->Shininess);
 	glPushMatrix();
 	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
+//	glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, _mesh->Indices);
 	glPopMatrix();
 	glDisableClientState(GL_COLOR_ARRAY);
@@ -43,6 +44,7 @@ void Cube::Update()
 {
 	_rotation += 1.1f;
 }
+
 
 void Cube::material()
 {
