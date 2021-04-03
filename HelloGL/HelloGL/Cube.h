@@ -8,8 +8,9 @@
 class Cube : public SceneObject
 {
 private:
-	GLfloat _rotation;
 	Material* _material;
+	Vector3 _position;
+	GLfloat _rotation;
 	
 public:
 	Cube(Mesh* mesh, Texture2D* texture,float x, float y, float z);
@@ -18,7 +19,7 @@ public:
 	void Draw();
 	void Update();
 	void material();
-	Vector3 _position;
+	void move(unsigned char key, int x, int y);
 };
 
 

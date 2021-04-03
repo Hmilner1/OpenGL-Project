@@ -12,5 +12,6 @@ public:
 	virtual  ~SceneObject();
 	virtual void Update();
 	virtual void Draw();
+	virtual void move(unsigned char key, int x, int y);
 };
 

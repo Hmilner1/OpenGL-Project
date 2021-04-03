@@ -31,7 +31,7 @@ void Cube::Draw()
 	glMaterialf(GL_FRONT, GL_SHININESS, _material->Shininess);
 	glPushMatrix();
 	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, 1.0f, 0.0f, 1.0f);
+	glRotatef(_rotation, 0.0f, 0.0f, 0.0f);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, _mesh->Indices);
 	glPopMatrix();
 	glDisableClientState(GL_COLOR_ARRAY);
@@ -41,7 +41,7 @@ void Cube::Draw()
 
 void Cube::Update()
 {
-	_rotation += 1.1f;
+	//_position.x -= 0.01;
 }
 
 void Cube::material()
@@ -54,4 +54,20 @@ void Cube::material()
 	_material->Specular.x = 1.0; _material->Specular.y = 1.0; _material->Specular.z = 1.0;
 	_material->Specular.w = 1.0;
 	_material->Shininess = 100.0f;
+}
+
+void Cube::move(unsigned char key, int x, int y)
+{
+	if (key == 'd')
+	{
+		_position.x += 0.1f;
+	}
+	else if (key == 'a')
+	{
+		_position.x -= 0.1f;
+	}
+	else if (key == 's')
+	{
+		_position.z += 0.1f;
+	}
 }
