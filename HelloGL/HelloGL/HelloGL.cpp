@@ -51,19 +51,7 @@ void HelloGL::InitObjects()
 	{
 		objects[i] = new Cube(cubeMesh, texture, (-4.0f), (0.0f), (-15.0f));
 	}
-	for (int i = 1; i < 2; i++)
-	{
-		objects[i] = new Cube(cubeMesh, texture1, (4.0f), (00.0f), (-15.0f));
-	}
 
-	
-
-	//objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-
-	//for (int i = 500; i < 1000; i++)
-	//{
-	//	objects[i] = new Pyramid(pyramidMesh,((rand() % 400) / 10.0f) - 20.0f,((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	//}
 
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
@@ -96,7 +84,7 @@ void HelloGL::Light()
 HelloGL::~HelloGL(void)
 {
 	delete camera;
-	for (int i =0; i < 2;  i++)
+	for (int i =0; i < 1;  i++)
 	{ 
 		delete objects[i];
 	}
@@ -109,7 +97,7 @@ void HelloGL::Display()
 	Vector3 v = { -0.04f, 0.037f, 0.9f };
 	Color c = { 255.0f, 255.0f, 255.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		objects[i]->Draw();
 	}
@@ -125,7 +113,7 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		objects[i]->Update();
 	}
