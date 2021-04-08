@@ -1,14 +1,11 @@
-﻿  GLUTCallbacks.cpp
-  HelloGL.cpp
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(70,29): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(71,29): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(72,29): warning C4305: '=': truncation from 'double' to 'float'
+﻿  HelloGL.cpp
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(74,29): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(75,29): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(76,29): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(78,30): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(79,30): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(80,30): warning C4305: '=': truncation from 'double' to 'float'
-  main.cpp
-  Generating Code...
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(78,29): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(79,29): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(80,29): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(82,30): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(83,30): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\HelloGL\HelloGL.cpp(84,30): warning C4305: '=': truncation from 'double' to 'float'
   HelloGL.vcxproj -> C:\Users\harve\OneDrive - Staffordshire University\FOGGS\Open GL repos\OpenGL-Project\HelloGL\Debug\HelloGL.exe

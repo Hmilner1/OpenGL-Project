@@ -52,6 +52,10 @@ void HelloGL::InitObjects()
 		objects[i] = new Cube(cubeMesh, texture, (-4.0f), (0.0f), (-15.0f));
 	}
 
+	for (int i = 0; i < 1; i++)
+	{
+		object2[i] = new Cube(cubeMesh, texture, (4.0f), (0.0f), (-15.0f));
+	}
 
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
@@ -88,6 +92,10 @@ HelloGL::~HelloGL(void)
 	{ 
 		delete objects[i];
 	}
+	for (int i = 0; i < 1; i++)
+	{
+		delete object2[i];
+	}
 	delete _lightData;
 	delete _lightPosition;
 }
@@ -100,6 +108,11 @@ void HelloGL::Display()
 	for (int i = 0; i < 1; i++)
 	{
 		objects[i]->Draw();
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		object2[i]->Draw();
 	}
 	DrawString("SCORE: Example", &v, &c);
 	glutSwapBuffers();
