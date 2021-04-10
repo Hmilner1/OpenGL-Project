@@ -21,4 +21,9 @@ void SceneObject::Update()
 
 }
 
+void SceneObject::move(unsigned char key, int x, int y)
+{
+
+}
+
 
