@@ -2,10 +2,14 @@
 #include "GLUTCallbacks.h"
 #include "MeshLoader.h"
 
+Sphere sphere1;
+Sphere sphere2;
+
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	InitGL(argc,argv);
 	InitObjects();
+	initSpheres();
 	Light();
 	Update();
 	glutMainLoop();
@@ -62,6 +66,15 @@ void HelloGL::InitObjects()
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 }
 
+void HelloGL::initSpheres()
+{
+	sphere1.radius = 1.0f;
+	sphere2.radius = 1.0f;
+
+	sphere1.position.x = -1.5f;
+	sphere2.position.x = 1.5f;
+}
+
 void HelloGL::Light()
 {
 	_lightPosition = new Vector4();
@@ -115,6 +128,9 @@ void HelloGL::Display()
 		object2[i]->Draw();
 	}
 	DrawString("SCORE: Example", &v, &c);
+
+	float distance = calculateDistanceSquared(sphere1, sphere2);
+	drawSpheres(distance, true);
 	glutSwapBuffers();
 	glFlush(); 
 }
@@ -160,6 +176,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	}
 }
 
+void HelloGL::reshape(int w, int h) {
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60, (GLfloat)w / (GLfloat)h, 1.0, 100.0);
+	glMatrixMode(GL_MODELVIEW);
+}
+
 void HelloGL::DrawString(const char* text, Vector3* position, Color* color)
 {
 	glPushMatrix();
@@ -167,4 +191,59 @@ void HelloGL::DrawString(const char* text, Vector3* position, Color* color)
 	glRasterPos2f(0.0f, 0.0f);
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
 	glPopMatrix();
+}
+
+void HelloGL::drawSpheres(float distance, bool distanceSquared)
+{
+	float radiusDistance;
+	if (distanceSquared)
+	{
+		radiusDistance = pow(sphere1.radius + sphere2.radius, 2);
+	}
+	else
+	{
+		radiusDistance = sphere1.radius + sphere2.radius;
+	}
+
+	//Draw Sphere 1
+
+	glPushMatrix();
+
+	if (distance <= radiusDistance)
+	{
+		glColor3f(1, 0, 0);
+	}
+	else
+	{
+		glColor3f(0, 0, 1);
+	}
+
+
+	glTranslatef(sphere1.position.x, sphere1.position.y, sphere1.position.z);
+	glBegin(GL_POINTS);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glEnd();
+	glutWireSphere(sphere1.radius, 20, 20);
+	glPopMatrix();
+
+	//Draw Sphere 2
+	glPushMatrix();
+	glColor3f(0, 1, 0);
+	glTranslatef(sphere2.position.x, sphere2.position.y, sphere2.position.z);
+	glBegin(GL_POINTS);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glEnd();
+	glutWireSphere(sphere2.radius, 20, 20);
+	glPopMatrix();
+}
+
+
+float HelloGL::calculateDistanceSquared(Sphere s1, Sphere s2)
+{
+	float distance = ((s1.position.x - s2.position.x) * (s1.position.x - s2.position.x))
+		+ ((s1.position.y - s2.position.y) *
+			(s1.position.y - s2.position.y))
+		+ ((s1.position.z - s2.position.z) *
+			(s1.position.z - s2.position.z));
+	return distance;
 }

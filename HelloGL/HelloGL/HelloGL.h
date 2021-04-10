@@ -4,6 +4,7 @@
 #include <gl/GLU.h>
 #include "GL/freeglut.h"
 #include "Structures.h"
+#include <math.h>
 #include "Cube.h"
 #include "Pyramid.h"
 //this can be changed to 7 to run 140 fps
@@ -23,6 +24,10 @@ public:
 	void InitGL(int argc, char* argv[]);
 	void Light();
 	void DrawString(const char* text, Vector3* position, Color* color);
+	float calculateDistanceSquared(Sphere s1, Sphere s2);
+	void drawSpheres(float distance, bool distanceSquared);
+	void initSpheres();
+	void reshape(int w, int h);
 private:
 	Camera* camera;  
 	SceneObject* objects[1];

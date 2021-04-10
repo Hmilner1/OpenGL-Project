@@ -59,3 +59,9 @@ struct Material
 	GLfloat Shininess;
 };
 
+struct Sphere
+{
+	float radius;
+	Vector3 position;
+};
+
