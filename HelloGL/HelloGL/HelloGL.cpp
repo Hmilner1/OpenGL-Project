@@ -50,14 +50,14 @@ void HelloGL::InitGL(int argc, char **argv)
 void HelloGL::InitObjects()
 {
 	camera = new Camera();
-	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Mesh* cubeMesh = MeshLoader::Load((char*)"Cube.txt");
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Penguins.raw", 512, 512);
+	texture->Load((char*)"Crate.raw", 512, 512);
 
 	Texture2D* texture1 = new Texture2D();
-	texture1->Load((char*)"Stars.raw", 512, 512);
+	texture1->Load((char*)"Cone2.raw", 512, 512);
 
 	for (int i = 0; i < 1; i++)
 	{
@@ -66,7 +66,7 @@ void HelloGL::InitObjects()
 
 	for (int i = 0; i < 1; i++)
 	{
-		object2[i] = new Cube(cubeMesh, texture, (4.0f), (0.0f), (-15.0f));
+		object2[i] = new Pyramid(pyramidMesh, texture1, (4.0f), (0.0f), (-15.0f));
 	}
 
 	sphere1.radius = 1.0f;
@@ -129,7 +129,7 @@ void HelloGL::Display()
 	Vector3 v = { -0.01f, 0.037f, 0.9f };
 	Color c = { 255.0f, 255.0f, 255.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	DrawString("Example Scene", &v, &c);
+	DrawString("bottom text", &v, &c);
 	for (int i = 0; i < 1; i++)
 	{
 		objects[i]->Draw();
@@ -227,6 +227,10 @@ void HelloGL::Update()
 	for (int i = 0; i < 1; i++)
 	{
 		objects[i]->Update();
+	}
+	for (int i = 0; i < 1; i++)
+	{
+		object2[i]->Update();
 	}
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera -> center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
 	glutPostRedisplay();

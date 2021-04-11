@@ -40,6 +40,7 @@ void Cube::Draw()
 void Cube::Update()
 {
 	//_position.x -= 0.01;
+	//_rotation += 1.1f;
 }
 
 void Cube::material()
