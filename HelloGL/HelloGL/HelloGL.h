@@ -22,25 +22,19 @@ public:
 	~HelloGL(void);
 	void Display();
 	void Update();
-//	void reshape(int w, int h);
 	void Keyboard(unsigned char key, int x, int y);
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
 	void Light();
 	void DrawString(const char* text, Vector3* position, Color* color);
-	float calculateDistanceSquared(Sphere s1, Sphere s2);
-	void drawSpheres(float distance, bool distanceSquared);
-//	void initSpheres();
-	void displayTxt();
+	void drawSpheres();
 private:
 	Camera* camera;  
 	SceneObject* objects[1];
 	SceneObject* object2[1];
 	Sphere sphere1;
-	Sphere sphere2;
 	Vector4* _lightPosition;
 	Lighting* _lightData;
-	
 };
 
 

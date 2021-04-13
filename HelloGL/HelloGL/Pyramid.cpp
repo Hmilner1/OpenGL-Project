@@ -39,7 +39,7 @@ void Pyramid::Draw()
 
 void Pyramid::Update()
 {
-	_rotation += 0.5f;
+	_rotation += 0.4f;
 }
 
 void Pyramid::material()

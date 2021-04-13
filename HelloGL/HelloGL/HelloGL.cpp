@@ -1,4 +1,8 @@
 #include "HelloGL.h"
+bool cubes = false;
+bool pyramid = false;
+bool sphere = false;
+
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	InitGL(argc,argv);
@@ -23,6 +27,25 @@ HelloGL::~HelloGL(void)
 	delete _lightPosition;
 }
 
+void mainMenuHandler(int choice)
+{	
+	switch (choice)
+	{
+	case 1:
+		cubes = true;
+		break;
+	case 2:
+		pyramid = true;
+		break;
+	case 3:
+		sphere = true;
+			break;
+	case 4:
+		exit(0);
+		break;
+	}
+}
+
 void HelloGL::InitGL(int argc, char **argv)
 {
 	GLUTCallbacks::Init(this);
@@ -31,10 +54,21 @@ void HelloGL::InitGL(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(900, 900);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Simple OpenGL Program");
+	glutCreateWindow("Shape Generator");
 	glutDisplayFunc(GLUTCallbacks::Display);
-	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
+
+	int sub1 = glutCreateMenu(mainMenuHandler);
+	glutAddMenuEntry("Cube", 1);
+	glutAddMenuEntry("Pyramid", 2);
+	glutAddMenuEntry("Sphere", 3);
+
+	glutCreateMenu(mainMenuHandler);
+	glutAddSubMenu("Shapes", sub1);
+	glutAddMenuEntry("Exit", 4);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, 800, 800);
@@ -54,10 +88,11 @@ void HelloGL::InitObjects()
 	Mesh* pyramidMesh = MeshLoader::Load((char*)"pyramid.txt");
 
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Crate.raw", 512, 512);
+	texture->Load((char*)"crate.raw", 512, 512);
 
 	Texture2D* texture1 = new Texture2D();
-	texture1->Load((char*)"Cone2.raw", 512, 512);
+	texture1->Load((char*)"Cone.raw", 512, 512);
+
 
 	for (int i = 0; i < 1; i++)
 	{
@@ -70,12 +105,8 @@ void HelloGL::InitObjects()
 	}
 
 	sphere1.radius = 1.0f;
-	sphere2.radius = 1.0f;
-
 	sphere1.position.x = -1.5f;
 	sphere1.position.z = -15.0f;
-	sphere2.position.x = 1.5f;
-	sphere2.position.z = -15.0f;
 
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
@@ -121,67 +152,45 @@ void HelloGL::Keyboard(unsigned char key, int x, int y)
 	{
 		camera->eye.z -= 0.1f;
 	}
-
 }
 
 void HelloGL::Display()
 {
-	Vector3 v = { -0.01f, 0.037f, 0.9f };
+	Vector3 v = { -0.25f, 1.2f, -2.1f };
 	Color c = { 255.0f, 255.0f, 255.0f };
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	DrawString("bottom text", &v, &c);
-	for (int i = 0; i < 1; i++)
+	DrawString("Shape Generator", &v, &c);
+	if (cubes == true)
 	{
-		objects[i]->Draw();
+		for (int i = 0; i < 1; i++)
+		{
+			objects[i]->Draw();
+		}
 	}
 
-	for (int i = 0; i < 1; i++)
+	if (pyramid == true)
 	{
-		object2[i]->Draw();
+		for (int i = 0; i < 1; i++)
+		{
+			object2[i]->Draw();
+		}
 	}
-
-	float distance = calculateDistanceSquared(sphere1, sphere2);
-	drawSpheres(distance, true);
+	
+	if (sphere == true)
+	{
+		drawSpheres();
+	}
 	glutSwapBuffers();
 	glFlush();
 }
 
-void HelloGL::drawSpheres(float distance, bool distanceSquared)
+void HelloGL::drawSpheres()
 {
-	float radiusDistance;
-	if (distanceSquared)
-	{
-		radiusDistance = pow(sphere1.radius + sphere2.radius, 2);
-	}
-	else
-	{
-		radiusDistance = sphere1.radius + sphere2.radius;
-	}
-	glPushMatrix();
-
-	if (distance <= radiusDistance)
-	{
-		glColor3f(1, 0, 0);
-	}
-	else
-	{
-		glColor3f(0, 0, 1);
-	}
-
 	glTranslatef(sphere1.position.x, sphere1.position.y, sphere1.position.z);
 	glBegin(GL_POINTS);
 	glVertex3f(0.0f, 0.0f, 0.0f);
 	glEnd();
 	glutWireSphere(sphere1.radius, 20, 20);
-	glPopMatrix();
-
-	glPushMatrix();
-	glColor3f(0, 1, 0);
-	glTranslatef(sphere2.position.x, sphere2.position.y, sphere2.position.z);
-	glBegin(GL_POINTS);
-	glVertex3f(0.0f, 0.0f, 0.0f);
-	glEnd();
-	glutWireSphere(sphere2.radius, 20, 20);
 	glPopMatrix();
 }
 
@@ -224,24 +233,20 @@ void HelloGL::Update()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->Diffuse.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->Specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
-	for (int i = 0; i < 1; i++)
+	if (cubes == true)
 	{
-		objects[i]->Update();
+		for (int i = 0; i < 1; i++)
+		{
+			objects[i]->Update();
+		}
 	}
-	for (int i = 0; i < 1; i++)
+	if (pyramid == true)
 	{
-		object2[i]->Update();
+		for (int i = 0; i < 1; i++)
+		{
+			object2[i]->Update();
+		}
 	}
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera -> center.y, camera->center.z, camera->up.x, camera->up.y, camera->up.z);
 	glutPostRedisplay();
-}
-
-float HelloGL::calculateDistanceSquared(Sphere s1, Sphere s2)
-{
-	float distance = ((s1.position.x - s2.position.x) * (s1.position.x - s2.position.x))
-		+ ((s1.position.y - s2.position.y) *
-			(s1.position.y - s2.position.y))
-		+ ((s1.position.z - s2.position.z) *
-			(s1.position.z - s2.position.z));
-	return distance;
 }
