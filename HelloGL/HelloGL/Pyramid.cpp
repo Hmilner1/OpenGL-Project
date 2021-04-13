@@ -25,7 +25,6 @@ void Pyramid::Draw()
 		glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
 		material();
-		//glMaterialf(GL_FRONT, GL_SHININESS, _material->Shininess);
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, 0.0f, 1.0f, 0.0f);
