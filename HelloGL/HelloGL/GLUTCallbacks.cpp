@@ -1,6 +1,7 @@
 #include "GLUTCallbacks.h"
 #include "HelloGL.h"
 
+//screen set up and ketboard controlls 
 namespace GLUTCallbacks
 {
 	namespace

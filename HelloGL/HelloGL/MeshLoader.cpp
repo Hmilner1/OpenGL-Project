@@ -7,15 +7,17 @@ using namespace std;
 
 namespace MeshLoader
 {
+    //created the relivant functions 
     void LoadVertices(ifstream& inFile, Mesh& mesh);
     void LoadNormals(ifstream& inFile, Mesh& mesh);
     void LoadIndices(ifstream& inFile, Mesh& mesh);
     void LoadTexCoords(ifstream& inFile, Mesh& mesh);
 
+    //loads in the verticies from the file read to be used 
     void LoadVertices(ifstream& inFile, Mesh& mesh)
     {
         inFile >> mesh.VertexCount;
-
+        //if there is any verticies it will add them to a array
         if (mesh.VertexCount > 0)
         {
             mesh.Vertices = new Vertex[mesh.VertexCount];
@@ -28,10 +30,11 @@ namespace MeshLoader
             }
         }
     }
-
+    //loads in the normals from the file read to be used 
     void LoadNormals(ifstream& inFile, Mesh& mesh)
     {
         inFile >> mesh.NormalCount;
+        //if there is any normals it will add them to a array
         mesh.Normals = new Vector3[mesh.NormalCount];
         for (int i = 0; i < mesh.NormalCount; i++)
         {
@@ -40,10 +43,11 @@ namespace MeshLoader
             inFile >> mesh.Normals[i].z;
         }
     }
-
+    //loads in the texture cord from the file read to be used 
     void LoadTexCoords(ifstream& inFile, Mesh& mesh)
     {
         inFile >> mesh.TexCoordCount;
+        //if there is any texture cord it will add them to a array
         mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
         for (int i = 0; i < mesh.TexCoordCount; i++)
         {
@@ -51,17 +55,18 @@ namespace MeshLoader
             inFile >> mesh.TexCoords[i].v;
         }
     }
-
+    //loads in the indices from the file read to be used 
     void LoadIndices(ifstream& inFile, Mesh& mesh)
     {
         inFile >> mesh.IndexCount;
+        //if there is any indices it will add them to a array
         mesh.Indices = new GLushort[mesh.IndexCount];
         for (int i = 0; i < mesh.IndexCount; i++)
         {
             inFile >> mesh.Indices[i];
         }
     }
-
+    //load function allowing meshes to be loaded in using data  
     Mesh* MeshLoader::Load(char* path)
     {
         Mesh* mesh = new Mesh();
@@ -75,7 +80,7 @@ namespace MeshLoader
             cerr << "Can't open texture file " << path << endl;
             return nullptr;
         }
-
+        //calls the functions and passes them to the mesh loader
         LoadVertices(inFile, *mesh);
         LoadTexCoords(inFile, *mesh);
         LoadNormals(inFile, *mesh);

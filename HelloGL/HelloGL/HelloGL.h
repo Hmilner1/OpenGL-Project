@@ -29,6 +29,7 @@ public:
 	void DrawString(const char* text, Vector3* position, Color* color);
 	void drawSpheres();
 private:
+	//game objects
 	Camera* camera;  
 	SceneObject* objects[1];
 	SceneObject* object2[1];

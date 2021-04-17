@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
 #include "Texture2D.h"
+//base class allowinf for other shapes to inherit from it 
 class SceneObject
 {
 protected:
