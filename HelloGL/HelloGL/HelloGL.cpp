@@ -3,7 +3,7 @@
 bool cubes = false;
 bool pyramid = false;
 bool sphere = false;
-
+bool intro = true;
 HelloGL::HelloGL(int argc, char* argv[])
 {
 	//calls all relivent functions
@@ -26,6 +26,10 @@ HelloGL::~HelloGL(void)
 	{
 		delete object2[i];
 	}
+	for (int i = 0; i < 1; i++)
+	{
+		delete object3[i];
+	}
 	delete _lightData;
 	delete _lightPosition;
 }
@@ -40,16 +44,19 @@ void mainMenuHandler(int choice)
 		cubes = true;
 		pyramid = false;
 		sphere = false;
+		intro = false;
 		break;
 	case 2:
 		pyramid = true;
 		cubes = false;
 		sphere = false;
+		intro = false;
 		break;
 	case 3:
 		sphere = true;
 		cubes = false;
 		pyramid = false;
+		intro = false;
 			break;
 	case 4:
 		exit(0);
@@ -105,17 +112,23 @@ void HelloGL::InitObjects()
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"crate.raw", 512, 512);
 	Texture2D* texture1 = new Texture2D();
-	texture1->Load((char*)"Cone.raw", 512, 512);
+	texture1->Load((char*)"Start.raw", 512, 512);
+	Texture2D* texture2 = new Texture2D();
+	texture2->Load((char*)"cone.raw", 512, 512);
 
 	//loads cube and sets position and texture 
 	for (int i = 0; i < 1; i++)
 	{
 		objects[i] = new Cube(cubeMesh, texture, (-4.0f), (0.0f), (-15.0f));
 	}
+	for (int i = 0; i < 1; i++)
+	{
+		object3[i] = new Cube(cubeMesh, texture1, (0.0f), (0.0f), (-2.4f));
+	}
 	//loads pyramid and sets position and texture 
 	for (int i = 0; i < 1; i++)
 	{
-		object2[i] = new Pyramid(pyramidMesh, texture1, (4.0f), (0.0f), (-15.0f));
+		object2[i] = new Pyramid(pyramidMesh, texture2, (4.0f), (0.0f), (-15.0f));
 	}
 	//sets sphere position 
 	sphere1.radius = 1.0f;
@@ -180,6 +193,14 @@ void HelloGL::Display()
 	//resetsfoe eatch shape
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//displays the correct shape depending on what is chosen
+	if (intro == true)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			object3[i]->Draw();
+
+		}
+	}
 	if (cubes == true)
 	{
 		for (int i = 0; i < 1; i++)

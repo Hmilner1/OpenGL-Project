@@ -33,6 +33,7 @@ private:
 	Camera* camera;  
 	SceneObject* objects[1];
 	SceneObject* object2[1];
+	SceneObject* object3[1];
 	Sphere sphere1;
 	Vector4* _lightPosition;
 	Lighting* _lightData;
